@@ -21,7 +21,7 @@ let All_products=[
     {id:2,name:"vivos",price:1000,image:"../images/vivo.png"},
     {id:3,name:"oppos",price:2000,image:"../images/samsung.png"},
     {id:4,name:"samsung",price:3000,image:"../images/samsung.png"},
-    {id:4,name:"samsung",price:3000,image:"../images/samsung.png"},
+    {id:5,name:"samsung",price:3000,image:"../images/samsung.png"},
 ]
 
 
@@ -36,6 +36,7 @@ function showData(){
                 <div class="card-body">
                     <span>${value.name}</span>
                     <h5>${value.price}</h5>
+                    <button class="btn btn-primary" onclick="cartFun(${value.id})">cart</button>
                 </div>
             </div>
         </div>
@@ -77,4 +78,60 @@ document.getElementById("searchData").innerHTML=data
 }
 
 
+var cart=[]
 
+function cartFun(proID){
+
+    let cartData=All_products.find((v,i)=>v.id == proID)
+    let existing=cart.find((v,i)=>v.id==proID)
+    console.log(existing);
+    
+    if(!existing){
+        cart.push(cartData)
+        cartData.quantity=1
+        alert("data added")
+    }
+    else{
+        cartData.quantity++
+        alert("quantity increased")
+
+    }
+
+
+
+    console.log("cart",cart);
+    showCart(cart)
+}
+
+
+function showCart(cart){
+    let data=""
+    cart.map((v,i)=>(
+        data+=`
+             <tr>
+                        <td>${i}</td>
+                        <td><img src="${v.image}" alt="" height="100px" width="100px"></td>
+                        <td>${v.name}</td>
+                        <td>${v.price}</td>
+                        <td>${v.quantity}</td>
+                        <td><button class="btn-close" onclick="removeFun(${v.id})"></button></td>
+                    </tr>
+        `
+    ))
+    document.getElementById("cartShow").innerHTML=data
+}
+
+
+
+function removeFun(proID){
+let removeData=cart.find((v,i)=>v.id==proID)
+if(removeData.quantity > 1){
+    removeData.quantity--
+}
+else{
+cart=cart.filter((v,i)=>v.id != proID)
+}
+    
+ showCart(cart)
+
+}

@@ -11,7 +11,7 @@
 <body>
     <h1>Welcome to home Page</h1>
     <button data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" class="btn btn-info">search</button>
-
+    <button class=" btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas">cart</button>
     <div class="row" id="showData">
         
     </div>
@@ -34,6 +34,35 @@
             </div>
         </div>
     </div>
+
+
+    <!-- cart canvas -->
+     <div class="offcanvas offcanvas-top" style="height: 500px;" id="cartCanvas">
+        <div class="offcanvas-header">
+            <h2>cart list</h2>
+            <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>s.no</th>
+                        <th>product</th>
+                        <th>Name</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cartShow">
+                   
+                </tbody>
+            </table>
+
+
+        </div>
+     </div>
 
 </body>
 <script src="../scripts/index.js"></script>
